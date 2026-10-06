@@ -1,0 +1,13 @@
+{
+  "private": true,
+  "scripts": {
+    "typecheck": "chatium typecheck",
+    "generate-typings": "chatium generate-typings",
+    "setup": "chatium setup",
+    "get-typings": "chatium get-typings",
+    "get-skills": "chatium get-skills"
+  },
+  "chatium": {
+    "publicFiles": []
+  }
+}
