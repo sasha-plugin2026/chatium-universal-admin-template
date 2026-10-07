@@ -6,18 +6,19 @@ import { getSalonSettings } from '../server/salon-settings'
 import { addDays, instantToWall, wallToInstant } from '../server/slots'
 
 /**
- * Демо-прайс шаблона: те же типы услуг, о которых агент умеет задавать уточняющие вопросы,
- * чтобы после установки было что показать клиенту и агенту.
+ * Демо-прайс шаблона: нейтральный набор услуг сервисной компании — без отраслевых названий,
+ * чтобы было видно, что плагин подходит любому бизнесу с записью и прайсом.
+ * Среди услуг есть похожие пары — на них видно, как агент уточняет детали по прайсу.
  */
 const DEMO_SERVICES: Array<{ title: string; price: number }> = [
-  { title: 'Маникюр с покрытием', price: 2500 },
-  { title: 'Маникюр гигиенический', price: 1500 },
-  { title: 'Педикюр с покрытием', price: 3200 },
-  { title: 'Стрижка женская', price: 2500 },
-  { title: 'Стрижка мужская', price: 1500 },
-  { title: 'Окрашивание волос в один тон', price: 5500 },
-  { title: 'Коррекция бровей', price: 1200 },
-  { title: 'Окрашивание бровей', price: 1600 },
+  { title: 'Консультация специалиста', price: 1500 },
+  { title: 'Расширенная консультация', price: 3500 },
+  { title: 'Онлайн-консультация', price: 1000 },
+  { title: 'Диагностика', price: 2500 },
+  { title: 'Базовый ремонт', price: 4500 },
+  { title: 'Срочный ремонт', price: 6500 },
+  { title: 'Настройка оборудования', price: 3000 },
+  { title: 'Выезд специалиста', price: 2000 },
 ]
 
 /** Демо-заявки: три штуки в разных статусах, чтобы страница заявок не была пустой. */
@@ -33,7 +34,7 @@ const DEMO_LEADS: Array<{
   {
     name: 'Анна',
     phone: '+7 900 000-00-01',
-    service: 'Маникюр с покрытием',
+    service: 'Диагностика',
     visitAt: 'завтра в 15:00',
     inDays: 1,
     time: '15:00',
@@ -42,7 +43,7 @@ const DEMO_LEADS: Array<{
   {
     name: 'Марина',
     phone: '+7 900 000-00-02',
-    service: 'Стрижка женская',
+    service: 'Настройка оборудования',
     visitAt: 'через три дня в 12:00',
     inDays: 3,
     time: '12:00',
@@ -51,7 +52,7 @@ const DEMO_LEADS: Array<{
   {
     name: 'Ольга',
     phone: '+7 900 000-00-03',
-    service: 'Окрашивание волос в один тон',
+    service: 'Базовый ремонт',
     visitAt: 'два дня назад в 18:00',
     inDays: -2,
     time: '18:00',
@@ -68,7 +69,7 @@ async function clearDemoData(ctx: app.Ctx): Promise<void> {
   for (const row of leads) await Leads.delete(ctx, row.id)
 }
 
-/** Демонстрационный момент времени: сдвиг по календарным дням салона от «сегодня». */
+/** Демонстрационный момент времени: сдвиг по календарным дням от «сегодня». */
 function demoInstant(
   settings: Awaited<ReturnType<typeof getSalonSettings>>,
   inDays: number,
@@ -117,7 +118,7 @@ export const seedRoute = app
           service: lead.service,
           visitAt: lead.visitAt,
           visitStart: demoInstant(settings, lead.inDays, lead.time),
-          comment: 'Демо-заявка из шаблона — можно удалить',
+          comment: 'Демо-заявка из примера — можно удалить',
           status: lead.status,
         })
         addedLeads += 1
