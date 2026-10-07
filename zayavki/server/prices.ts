@@ -1,7 +1,7 @@
 import { Money } from '@app/heap'
 import Prices from '../tables/prices.table'
 
-/** Валюта прайса салона. */
+/** Валюта прайса. */
 const CURRENCY = 'RUB'
 
 export type PriceItem = {
@@ -21,8 +21,8 @@ function normalize(value: string): string {
 }
 
 /**
- * Сравнивает слова по началу — чтобы «брови» находились в «оформлении бровей»,
- * а «стрижку» — в «стрижке». Достаточно первых четырёх букв.
+ * Сравнивает слова по началу — чтобы «консультация» находилась в «консультации
+ * специалиста». Достаточно первых четырёх букв.
  */
 function sameStem(a: string, b: string): boolean {
   if (a === b) return true

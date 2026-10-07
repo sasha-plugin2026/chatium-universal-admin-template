@@ -22,7 +22,7 @@ export function reminderMomentFor(settings: SalonSettings, visitStart: Date): Da
   )
 }
 
-/** «14:00» — время визита в часах салона. */
+/** «14:00» — время визита в часах компании. */
 function visitTimeText(settings: SalonSettings, visitStart: Date): string {
   const wall = instantToWall(settings, visitStart)
   return `${String(wall.hh).padStart(2, '0')}:${String(wall.mm).padStart(2, '0')}`

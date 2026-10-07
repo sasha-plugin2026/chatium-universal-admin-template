@@ -32,7 +32,7 @@ const MONTH_NAMES = [
 /** Насколько далеко вперёд ищем свободные окна. */
 const HORIZON_DAYS = 21
 
-/** Смещение часового пояса салона от UTC в минутах. */
+/** Смещение часового пояса компании от UTC в минутах. */
 export function offsetMinutes(timeZone: string): number {
   const match = /^([+-])(\d{1,2}):?(\d{2})$/.exec(timeZone.trim())
   if (!match) return 180
@@ -42,7 +42,7 @@ export function offsetMinutes(timeZone: string): number {
 
 type WallClock = { y: number; m: number; d: number; hh: number; mm: number; weekday: number }
 
-/** Момент времени → настенные часы салона. */
+/** Момент времени → настенные часы компании. */
 export function instantToWall(settings: SalonSettings, date: Date): WallClock {
   const shifted = new Date(date.getTime() + offsetMinutes(settings.timeZone) * 60000)
   return {
@@ -55,7 +55,7 @@ export function instantToWall(settings: SalonSettings, date: Date): WallClock {
   }
 }
 
-/** Настенные часы салона → момент времени. */
+/** Настенные часы компании → момент времени. */
 export function wallToInstant(
   settings: SalonSettings,
   y: number,
@@ -114,7 +114,7 @@ export function describeSchedule(settings: SalonSettings): string {
     .map(day => WEEKDAY_NAMES[day])
     .filter(Boolean)
   const off = days.length ? ` Выходные: ${days.join(', ')}.` : ''
-  return `Салон работает с ${settings.workdayStart} до ${settings.workdayEnd}, одно окно — ${settings.slotMinutes} мин.${off}`
+  return `Мы работаем с ${settings.workdayStart} до ${settings.workdayEnd}, одно окно — ${settings.slotMinutes} мин.${off}`
 }
 
 type Interval = { start: number; end: number }
@@ -278,7 +278,7 @@ export async function checkSlot(
       status: 'closed',
       slotLabel: label,
       start: instant,
-      message: `ВЫХОДНОЙ: ${label} — салон не работает. ${describeSchedule(settings)}${alternativesText(settings, alternatives)}`,
+      message: `ВЫХОДНОЙ: ${label} — в этот день мы не работаем. ${describeSchedule(settings)}${alternativesText(settings, alternatives)}`,
       alternatives,
     }
   }
