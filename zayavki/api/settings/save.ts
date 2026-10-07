@@ -1,7 +1,7 @@
 import { requireAccountRole } from '@app/auth'
 import { getSalonSettings, parseTimeOfDay, saveSalonSettings } from '../../server/salon-settings'
 
-/** Сохранение настроек салона: рабочие часы, выходные, длительность окна. */
+/** Сохранение настроек записи: рабочие часы, выходные, длительность окна. */
 export const settingsSaveRoute = app
   .post('/')
   .body(s => ({

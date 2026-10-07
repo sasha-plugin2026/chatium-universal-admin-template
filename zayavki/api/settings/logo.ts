@@ -1,7 +1,7 @@
 import { requireAccountRole } from '@app/auth'
 import { getSalonSettings, saveSalonSettings } from '../../server/salon-settings'
 
-/** Сохранение логотипа салона: хеш файла из хранилища. Пустая строка — убрать логотип. */
+/** Сохранение логотипа: хеш файла из хранилища. Пустая строка — убрать логотип. */
 export const settingsLogoRoute = app
   .post('/')
   .body(s => ({ logoHash: s.string() }))
