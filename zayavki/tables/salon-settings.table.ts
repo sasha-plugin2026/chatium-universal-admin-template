@@ -1,13 +1,13 @@
 import { Heap } from '@app/heap'
 
 /**
- * Настройки салона: одна запись на аккаунт.
+ * Настройки записи: одна запись на аккаунт.
  * Если записи нет, используются значения по умолчанию из server/salon-settings.ts.
  */
 const SalonSettings = Heap.Table(
   't_salon_settings_Q4W8Z2',
   {
-    salonName: Heap.String({ customMeta: { title: 'Название салона' } }),
+    salonName: Heap.String({ customMeta: { title: 'Название компании' } }),
     logoHash: Heap.Optional(
       Heap.String({ customMeta: { title: 'Логотип (файл в хранилище)' } }),
     ),
@@ -18,12 +18,12 @@ const SalonSettings = Heap.Table(
       customMeta: { title: 'Выходные дни (0 — воскресенье)' },
     }),
     reminderHour: Heap.String({ customMeta: { title: 'Время напоминания о визитах' } }),
-    timeZone: Heap.String({ customMeta: { title: 'Часовой пояс салона' } }),
+    timeZone: Heap.String({ customMeta: { title: 'Часовой пояс' } }),
   },
   {
     customMeta: {
-      title: 'Настройки салона',
-      description: 'Рабочие часы салона, выходные и длительность окна записи',
+      title: 'Настройки записи',
+      description: 'Рабочие часы, выходные и длительность окна записи',
     },
   },
 )
