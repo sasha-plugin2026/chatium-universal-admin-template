@@ -1,7 +1,7 @@
 import { requireAccountRole } from '@app/auth'
 import { addPrice, listPrices, matchPrices } from '../../server/prices'
 
-/** Добавление услуги в прайс салона. */
+/** Добавление услуги в прайс. */
 export const priceAddRoute = app
   .post('/')
   .body(s => ({

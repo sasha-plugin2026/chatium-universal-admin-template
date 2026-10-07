@@ -1,7 +1,7 @@
 import { requireAccountRole } from '@app/auth'
 import { listPrices, removePrice } from '../../server/prices'
 
-/** Удаление услуги из прайса салона. */
+/** Удаление услуги из прайса. */
 export const priceRemoveRoute = app
   .post('/')
   .query(s => ({ id: s.string() }))
