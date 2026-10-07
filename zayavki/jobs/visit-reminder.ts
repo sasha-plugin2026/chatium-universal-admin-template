@@ -4,7 +4,7 @@ import { reminderMomentFor, remindAboutVisit } from '../server/visit-reminders'
 
 /**
  * Задача напоминания о визите. Заводится на каждую заявку со временем визита
- * и срабатывает за день до визита, в час напоминания из настроек салона.
+ * и срабатывает за день до визита, в час напоминания из настроек.
  */
 export const visitReminderJob = app
   .job('/')
