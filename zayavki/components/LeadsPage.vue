@@ -9,7 +9,7 @@
       <div class="toolbar">
         <span class="toolbar__count">{{ countText }}</span>
         <div class="toolbar__actions">
-          <a class="button button--ghost" :href="settingsUrl">Настройки салона</a>
+          <a class="button button--ghost" :href="settingsUrl">Настройки записи</a>
           <button type="button" class="button button--ghost" :disabled="loading" @click="load">
             Обновить
           </button>

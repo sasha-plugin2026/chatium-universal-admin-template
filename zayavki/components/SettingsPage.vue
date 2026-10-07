@@ -1,6 +1,6 @@
 <template>
   <main class="page">
-    <h1 class="page__title">Настройки салона</h1>
+    <h1 class="page__title">Настройки записи</h1>
     <p class="page__subtitle">
       По этим часам помощник проверяет свободные окна, а цены берёт только из прайса ниже.
     </p>
@@ -8,23 +8,23 @@
     <div class="card">
       <form class="form" @submit.prevent="saveSettings">
         <div class="form__row">
-          <label class="form__label" for="salon-name">Название салона</label>
+          <label class="form__label" for="salon-name">Название компании</label>
           <input
             id="salon-name"
             v-model="salonName"
             class="form__input form__input--grow"
             type="text"
-            placeholder="Например, «Салон красоты»"
+            placeholder="Например, «Ромашка»"
           />
           <span class="form__hint">
-            Если оставить пустым — помощник представится нейтрально: «наш салон».
+            Если оставить пустым — помощник представится нейтрально: «наша компания».
           </span>
         </div>
 
         <div class="form__block">
           <span class="form__label">Логотип</span>
           <p class="form__hint">
-            Логотип показывается клиенту в чате и на странице заявок. Пока его нет — показывается название салона.
+            Логотип показывается клиенту в чате и на странице заявок. Пока его нет — показывается название компании.
           </p>
 
           <div class="logo-row">
@@ -111,7 +111,7 @@
           v-model="newTitle"
           class="form__input form__input--grow"
           type="text"
-          placeholder="Услуга, например «Маникюр с покрытием»"
+          placeholder="Например, «Консультация специалиста»"
           aria-label="Название услуги"
         />
         <input
@@ -197,8 +197,8 @@
 
     <h2 class="page__section">Демо-данные</h2>
     <p class="page__subtitle">
-      Заполнить прайс и заявки примерами, чтобы сразу посмотреть, как работает помощник.
-      Имена и телефоны в примерах выдуманные, их можно убрать одной кнопкой.
+      Пример прайса сервисной компании и три заявки в разных статусах — чтобы сразу посмотреть,
+      как работает помощник. Имена и телефоны в примерах выдуманные, убираются одной кнопкой.
     </p>
 
     <div class="card">
@@ -375,7 +375,7 @@ async function removeLogo() {
   logoStatus.value = ''
   logoError.value = ''
   try {
-    await applyLogoHash('', 'Логотип удалён — показывается название салона')
+    await applyLogoHash('', 'Логотип удалён — показывается название компании')
   } catch {
     logoError.value = 'Не удалось удалить логотип. Попробуйте ещё раз.'
   } finally {
