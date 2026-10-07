@@ -5,7 +5,7 @@ import { listPrices } from './server/prices'
 import { leadsPageRoute } from './leads'
 import SettingsPage from './components/SettingsPage.vue'
 
-/** Страница «Настройки салона» — рабочие часы, выходные и прайс. Доступна сотрудникам. */
+/** Страница «Настройки записи» — рабочие часы, выходные и прайс. Доступна сотрудникам. */
 export const settingsPageRoute = app.get('/', async ctx => {
   if (!ctx.user?.is('Staff')) {
     const back = encodeURIComponent(settingsPageRoute.path())
@@ -19,7 +19,7 @@ export const settingsPageRoute = app.get('/', async ctx => {
     <html>
       <head>
         <meta charset="utf-8" />
-        <title>Настройки салона</title>
+        <title>Настройки записи</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Styles />
       </head>
